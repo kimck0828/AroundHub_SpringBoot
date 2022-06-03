@@ -1,23 +1,27 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.controller;
 
 import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/hello")
+@Slf4j
 public class HelloController {
+
     @GetMapping("/")
     public String hello() {
+        log.info("★HELLO");
+        log.error("★HELLO");
         return "hello";
     }
     
     @GetMapping("/name1/{name}")
     public String helloName(@PathVariable String name) {
+        log.info("★helloName param:{}", name);
         return "hello " + name; 
     }
 
