@@ -1,5 +1,6 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.controller;
 
+import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
 import lombok.Data;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,16 +28,9 @@ public class PostController {
     }
 
     @PostMapping("/member/dto")
-    public String postMemberDto(@RequestBody Dto dto) {
+    public String postMemberDto(@RequestBody MemberDto dto) {
         return dto.toString();
     }
     
-    @Data
-    static private class Dto{
-        private String name;
-        private String email;
-        private String organization;
-    }
-
 }
 

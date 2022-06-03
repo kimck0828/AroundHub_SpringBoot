@@ -1,5 +1,6 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.controller;
 
+import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -36,14 +37,8 @@ public class HelloController {
     }
     
     @GetMapping("/params/dto")
-    public String helloRequestParamsDto(Dto dto) {
+    public String helloRequestParamsDto(MemberDto dto) {
         return dto.toString();
-    }
-
-    @Getter@Setter@ToString
-    static class Dto {
-        private String id;
-        private String name;
     }
 }
 
