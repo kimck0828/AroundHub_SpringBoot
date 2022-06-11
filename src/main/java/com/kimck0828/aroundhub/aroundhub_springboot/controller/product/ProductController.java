@@ -1,5 +1,7 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.controller.product;
 
+import com.kimck0828.aroundhub.aroundhub_springboot.common.exception.AroundHubException;
+import com.kimck0828.aroundhub.aroundhub_springboot.common.Constants;
 import com.kimck0828.aroundhub.aroundhub_springboot.data.dto.ProductDto;
 import com.kimck0828.aroundhub.aroundhub_springboot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,10 @@ public class ProductController {
         );
         
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/exception")
+    public void exceptionTest() throws AroundHubException {
+        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "わざっとエラー");
     }
 }
