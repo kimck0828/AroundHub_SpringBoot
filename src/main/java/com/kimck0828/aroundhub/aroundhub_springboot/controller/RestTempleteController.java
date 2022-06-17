@@ -1,10 +1,14 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.controller;
 
+import com.google.gson.Gson;
 import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
 import com.kimck0828.aroundhub.aroundhub_springboot.service.RestTempleteService;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -54,25 +58,30 @@ public class RestTempleteController {
     headers.add("X-RapidAPI-Key", "164f928ba5mshf23a1495c0c62a1p106b49jsnb6ada11dd2ca");
     headers.add("X-RapidAPI-Host", "url-shortener-service.p.rapidapi.com");
     headers.setContentType(MediaType.APPLICATION_JSON);
+
+
+    Map<String, String> params = new HashMap<>();
+    params.put("url", url);
     
     RestTemplate restTemplate = new RestTemplate();
-    RequestEntity<ShortUrlDto> requestEntity = RequestEntity
+    RequestEntity<Map<String, String>> requestEntity = RequestEntity
         .post("https://url-shortener-service.p.rapidapi.com/shorten")
         .headers(headers)
-        .body(new ShortUrlDto(url));
-    ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity,
-        String.class);
-    return responseEntity.getBody();
+        .body(params);
+
+//    ResponseEntity<ShortUrlResponse> responseEntity = restTemplate.exchange(requestEntity,
+//        ShortUrlResponse.class);
+//    return responseEntity.getBody();
+
+    ResponseEntity<Map> responseEntity = restTemplate.exchange(requestEntity,
+        Map.class);
+    return (String) responseEntity.getBody().get("result_url");
   }
   
   @Data
+  @NoArgsConstructor
   @AllArgsConstructor
-  class ShortUrlDto {
-    String url;
-  }
-  @Data
-  @AllArgsConstructor
-  class ShortUrlResponse{
-    String resultUrl;
+  static class ShortUrlResponse{
+    String result_url;
   }
 }
