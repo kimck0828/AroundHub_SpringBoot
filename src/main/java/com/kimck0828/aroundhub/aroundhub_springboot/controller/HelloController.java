@@ -14,7 +14,7 @@ import java.util.Map;
 @Slf4j
 public class HelloController {
 
-    @GetMapping("/")
+    @GetMapping("")
     public String hello() {
         log.info("★HELLO");
         log.error("★HELLO");

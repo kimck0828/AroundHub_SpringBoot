@@ -23,9 +23,8 @@ public class ProductController {
     }
     
     @GetMapping("/{productId}")
-    public String getProduct(@PathVariable String productId) {
-        ProductDto productDto = productService.getProduct(productId);
-        return productDto.toString();
+    public ProductDto getProduct(@PathVariable String productId) {
+        return productService.getProduct(productId);
     }
     @PostMapping("/")
     public ResponseEntity<ProductDto> saveProduct(@Valid @RequestBody ProductDto productDto) {
