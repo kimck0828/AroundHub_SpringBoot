@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/put")
@@ -20,10 +22,10 @@ public class PutController {
     
     @PutMapping("/member")
     public String putMember(@RequestBody Map<String, String> putData) {
-        StringBuilder sb = new StringBuilder();
-        putData.forEach((key,value) -> sb.append("key:").append(value).append(","));
-        
-        return sb.toString();
+        List<String> newList =  putData.keySet().stream()
+                .map(key -> key +"=" + putData.get(key))
+                .collect(Collectors.toList());
+        return  String.join(",", newList);
     }
     
     @PutMapping("/member1")

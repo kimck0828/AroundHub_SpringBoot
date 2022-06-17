@@ -9,8 +9,7 @@ import java.util.Map;
 
 public class AroundHubCommons {
 
-    public static ResponseEntity<Map<String, String>> getMapResponseEntity(Exception e) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
+    public static ResponseEntity<Map<String, String>> getMapResponseEntity(HttpStatus status, Exception e) {
         HttpHeaders httpHeaders = new HttpHeaders();
         Map<String, String> map = new LinkedHashMap<>();
         map.put("error type", status.getReasonPhrase());

@@ -3,6 +3,7 @@ package com.kimck0828.aroundhub.aroundhub_springboot.controller;
 import com.kimck0828.aroundhub.aroundhub_springboot.common.AroundHubCommons;
 import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,13 @@ public class HelloController {
     public String helloName2(@PathVariable("name") String value) {
         return "hello " + value;
     }
-    
+
+    /**
+     * helloRequestParamsメソッド
+     * @param name 名前
+     * @param id ID
+     * @return id:{id}, name:{name}
+     */
     @GetMapping("/params1")
     public String helloRequestParams(@RequestParam String name,
                                      @RequestParam String id) {
@@ -62,7 +69,7 @@ public class HelloController {
     public ResponseEntity<Map<String,String>> exceptionHandler(Exception e) {
         log.warn("HelloController#exceptionHandlerで実行!");
 
-        return AroundHubCommons.getMapResponseEntity(e);
+        return AroundHubCommons.getMapResponseEntity(HttpStatus.BAD_REQUEST, e);
     }
 }
 

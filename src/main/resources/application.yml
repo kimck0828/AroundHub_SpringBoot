@@ -1,38 +1,38 @@
 spring.datasource:
   
 spring:
-  #DB??
+  #DB設定
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/around-hub
     username: myadmin
     password: password
-  #JPA??
+  #JPA設定
   jpa:
     hibernate:
-      #??????
+      #サーバ起動時にDDL自動実行
       ddl-auto: update
-    #SQL??
+    #SQLを見せる
     show-sql: true
     
     properties:
       hibernate:
-        # JAP????SQL??
+        # JPA実行時のSQL表示
         show_sql: true
-        # SQL?????
+        # SQLを自動フォーマット
         format_sql: true 
       
-  # ??????????????
+  # DDL自動実行設定
   sql:
     init:
-      mode: always #always:????????never??????
-      schema-locations: classpath:schema.sql #DB????????
-      data-locations: classpath:data.sql #DB???????
+      mode: always #always: 起動時は必ず実行
+      schema-locations: classpath:schema.sql #実行するスキマーファイル
+      data-locations: classpath:data.sql #実行するSQLファイル
 
 # Logging
 logging:
   level:
-    # JPA??????????? 
+    # JPAログレベル
     org.hibernate.type.descriptor.sql.BasicBinder: trace
     org.hibernate.type.EnumType: trace
    

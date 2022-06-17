@@ -18,7 +18,7 @@ public class AroundHubExceptionHandler {
     public ResponseEntity<Map<String,String>> exceptionHandler(Exception e) {
         log.warn("AroundHubException#exceptionHandlerで実行!");
 
-        return AroundHubCommons.getMapResponseEntity(e);
+        return AroundHubCommons.getMapResponseEntity(HttpStatus.BAD_REQUEST, e);
     }
 
     @ExceptionHandler(value = ArrayStoreException.class)

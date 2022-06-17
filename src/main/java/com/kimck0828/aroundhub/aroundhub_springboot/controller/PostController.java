@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/post")
@@ -19,12 +21,10 @@ public class PostController {
     
     @PostMapping("/member")
     public String postMember(@RequestBody Map<String, String> postData) {
-        StringBuilder sb = new StringBuilder();
-        
-        postData.keySet().forEach(key -> 
-                sb.append(key).append(":").append(postData.get(key)).append(","));
-        
-        return sb.toString();
+        List<String> newList =  postData.keySet().stream()
+                .map(key -> key +"=" + postData.get(key))
+                .collect(Collectors.toList());
+        return  String.join(",", newList);
     }
 
     @PostMapping("/member/dto")
