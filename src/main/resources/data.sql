@@ -6,10 +6,11 @@
 -- --------------------------------------------------------
 
 -- テーブル around-hub.product: ~0 rows (約) のデータをダンプしています
-DELETE FROM `product`;
+DELETE
+FROM `product`;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_stock`) VALUES
-	('first-goods', '初めての商品', 10000, 300);
+INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `product_stock`)
+VALUES ('first-goods', '初めての商品', 10000, 300);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -13,55 +13,54 @@ import java.net.URI;
 
 @WebMvcTest(HelloController.class)
 public class HelloControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
 
-    final String SERVER_BOX_URI="http://localhost:8080";
-    private UriComponentsBuilder getBaseUriComponentsBuilder(String path) {
-        return UriComponentsBuilder
-                .fromUriString(SERVER_BOX_URI)
-                .path("/api/hello/" + (path.startsWith("/") ? path.substring(1) : path));
-    }
-    
-    @Test
-    void helloTest() {
-        URI uri = getBaseUriComponentsBuilder("/")
-                .encode()
-                .build()
-                .toUri()
-                ;
-        ResponseEntity<String> responseEntity = 
-                new RestTemplate().getForEntity(uri, String.class);
+  @Autowired
+  private MockMvc mockMvc;
 
-        Assertions.assertEquals(responseEntity.getBody(), "hello");
-    }
-    
-    @Test
-    void helloNameTest() {
-        URI uri = getBaseUriComponentsBuilder("/name1/{name}")
-                .encode()
-                .build()
-                .expand("XXXX")
-                .toUri()
-                ;
-        ResponseEntity<String> responseEntity =
-                new RestTemplate().getForEntity(uri, String.class);
+  final String SERVER_BOX_URI = "http://localhost:8080";
 
-        Assertions.assertEquals(responseEntity.getBody(), "hello XXXX");
-    }
-    
-    @Test
-    void helloRequestParams() {
-        URI uri = getBaseUriComponentsBuilder("/params1")
-                .queryParam("name", "test-name")
-                .queryParam("id", "test-id")
-                .encode()
-                .build()
-                .toUri()
-                ;
-        ResponseEntity<String> responseEntity =
-                new RestTemplate().getForEntity(uri, String.class);
+  private UriComponentsBuilder getBaseUriComponentsBuilder(String path) {
+    return UriComponentsBuilder
+        .fromUriString(SERVER_BOX_URI)
+        .path("/api/hello/" + (path.startsWith("/") ? path.substring(1) : path));
+  }
 
-        Assertions.assertEquals(responseEntity.getBody(), "id:test-id, name:test-name");
-    }
+  @Test
+  void helloTest() {
+    URI uri = getBaseUriComponentsBuilder("/")
+        .encode()
+        .build()
+        .toUri();
+    ResponseEntity<String> responseEntity =
+        new RestTemplate().getForEntity(uri, String.class);
+
+    Assertions.assertEquals(responseEntity.getBody(), "hello");
+  }
+
+  @Test
+  void helloNameTest() {
+    URI uri = getBaseUriComponentsBuilder("/name1/{name}")
+        .encode()
+        .build()
+        .expand("XXXX")
+        .toUri();
+    ResponseEntity<String> responseEntity =
+        new RestTemplate().getForEntity(uri, String.class);
+
+    Assertions.assertEquals(responseEntity.getBody(), "hello XXXX");
+  }
+
+  @Test
+  void helloRequestParams() {
+    URI uri = getBaseUriComponentsBuilder("/params1")
+        .queryParam("name", "test-name")
+        .queryParam("id", "test-id")
+        .encode()
+        .build()
+        .toUri();
+    ResponseEntity<String> responseEntity =
+        new RestTemplate().getForEntity(uri, String.class);
+
+    Assertions.assertEquals(responseEntity.getBody(), "id:test-id, name:test-name");
+  }
 }

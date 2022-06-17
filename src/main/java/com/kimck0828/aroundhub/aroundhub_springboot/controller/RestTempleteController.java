@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/rest-templete")
 public class RestTempleteController {
-    
-    @Autowired
-    private RestTempleteService service;
-    
-    @GetMapping("/around-hub")
-    public String getArounfHub() {
-        return service.getArounfHub();
-    }
 
-    @GetMapping("/name")
-    public String getName(@RequestParam String name) {
-        return service.getName(name);
-    }
+  @Autowired
+  private RestTempleteService service;
 
-    @GetMapping("/path-valiable/{name}")
-    public String getName2(@PathVariable String name) {
-        return service.getName2(name);
-    }
+  @GetMapping("/around-hub")
+  public String getArounfHub() {
+    return service.getArounfHub();
+  }
 
-    @PostMapping("/member")
-    public ResponseEntity<MemberDto> getMember() {
+  @GetMapping("/name")
+  public String getName(@RequestParam String name) {
+    return service.getName(name);
+  }
 
-        return service.postMemberDto();
-    }
+  @GetMapping("/path-valiable/{name}")
+  public String getName2(@PathVariable String name) {
+    return service.getName2(name);
+  }
 
-    @PostMapping("/add-header")
-    public ResponseEntity<MemberDto> addHeader() {
-        return service.addHeader();
-    }
+  @PostMapping("/member")
+  public ResponseEntity<MemberDto> getMember() {
+
+    return service.postMemberDto();
+  }
+
+  @PostMapping("/add-header")
+  public ResponseEntity<MemberDto> addHeader() {
+    return service.addHeader();
+  }
 }

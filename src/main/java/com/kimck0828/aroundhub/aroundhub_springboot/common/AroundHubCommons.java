@@ -9,13 +9,14 @@ import java.util.Map;
 
 public class AroundHubCommons {
 
-    public static ResponseEntity<Map<String, String>> getMapResponseEntity(HttpStatus status, Exception e) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("error type", status.getReasonPhrase());
-        map.put("code", String.valueOf(status.value()));
-        map.put("message", e.getMessage());
+  public static ResponseEntity<Map<String, String>> getMapResponseEntity(HttpStatus status,
+      Exception e) {
+    HttpHeaders httpHeaders = new HttpHeaders();
+    Map<String, String> map = new LinkedHashMap<>();
+    map.put("error type", status.getReasonPhrase());
+    map.put("code", String.valueOf(status.value()));
+    map.put("message", e.getMessage());
 
-        return new ResponseEntity<>(map, httpHeaders, status);
-    }
+    return new ResponseEntity<>(map, httpHeaders, status);
+  }
 }

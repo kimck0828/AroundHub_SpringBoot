@@ -9,29 +9,30 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    
-    ProductDAO productDAO;
-    
-    @Autowired
-    public ProductServiceImpl(ProductDAO productDAO) {
-        this.productDAO = productDAO;
-    }
-    
-    @Override
-    public ProductDto saveProduct(String productId, String productName, int productPrice, int productStock) {
-        ProductEntity entity = productDAO.saveProduct(
-                ProductEntity.builder()
-                        .productId(productId)
-                        .productName(productName)
-                        .productPrice(productPrice)
-                        .productStock(productStock).build()
-        );
-        return new ProductDto(entity);
-    }
 
-    @Override
-    public ProductDto getProduct(String productId) {
-        ProductEntity entity =  productDAO.getProduct(productId);
-        return new ProductDto(entity);
-    }
+  ProductDAO productDAO;
+
+  @Autowired
+  public ProductServiceImpl(ProductDAO productDAO) {
+    this.productDAO = productDAO;
+  }
+
+  @Override
+  public ProductDto saveProduct(String productId, String productName, int productPrice,
+      int productStock) {
+    ProductEntity entity = productDAO.saveProduct(
+        ProductEntity.builder()
+            .productId(productId)
+            .productName(productName)
+            .productPrice(productPrice)
+            .productStock(productStock).build()
+    );
+    return new ProductDto(entity);
+  }
+
+  @Override
+  public ProductDto getProduct(String productId) {
+    ProductEntity entity = productDAO.getProduct(productId);
+    return new ProductDto(entity);
+  }
 }

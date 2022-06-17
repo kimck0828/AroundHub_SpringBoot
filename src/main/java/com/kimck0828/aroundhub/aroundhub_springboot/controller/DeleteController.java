@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/delete")
 public class DeleteController {
-    @DeleteMapping("/{id}")
-    public String deleteDefault(@PathVariable String id) {
-        return id;
-    }
+
+  @DeleteMapping("/{id}")
+  public String deleteDefault(@PathVariable String id) {
+    return id;
+  }
 }

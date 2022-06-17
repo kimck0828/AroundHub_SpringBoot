@@ -14,24 +14,25 @@ import java.util.Map;
 @RestControllerAdvice
 @Slf4j
 public class AroundHubExceptionHandler {
-    @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<Map<String,String>> exceptionHandler(Exception e) {
-        log.warn("AroundHubException#exceptionHandlerで実行!");
 
-        return AroundHubCommons.getMapResponseEntity(HttpStatus.BAD_REQUEST, e);
-    }
+  @ExceptionHandler(value = Exception.class)
+  public ResponseEntity<Map<String, String>> exceptionHandler(Exception e) {
+    log.warn("AroundHubException#exceptionHandlerで実行!");
 
-    @ExceptionHandler(value = ArrayStoreException.class)
-    public ResponseEntity<Map<String,String>> exceptionHandler(AroundHubException e) {
-        log.warn("AroundHubException#exceptionHandlerで実行!");
+    return AroundHubCommons.getMapResponseEntity(HttpStatus.BAD_REQUEST, e);
+  }
 
-        HttpStatus status = e.getHttpStatus();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("error type", e.getHttpStatusType());
-        map.put("code", String.valueOf(e.getHttpStatusCode()));
-        map.put("message", e.getMessage());
+  @ExceptionHandler(value = ArrayStoreException.class)
+  public ResponseEntity<Map<String, String>> exceptionHandler(AroundHubException e) {
+    log.warn("AroundHubException#exceptionHandlerで実行!");
 
-        return new ResponseEntity<>(map, httpHeaders, status);
-    }
+    HttpStatus status = e.getHttpStatus();
+    HttpHeaders httpHeaders = new HttpHeaders();
+    Map<String, String> map = new LinkedHashMap<>();
+    map.put("error type", e.getHttpStatusType());
+    map.put("code", String.valueOf(e.getHttpStatusCode()));
+    map.put("message", e.getMessage());
+
+    return new ResponseEntity<>(map, httpHeaders, status);
+  }
 }

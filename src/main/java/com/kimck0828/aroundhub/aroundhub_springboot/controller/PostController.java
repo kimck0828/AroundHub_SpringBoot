@@ -14,23 +14,24 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
-    @PostMapping("/default")
-    public String postMethod() {
-        return "post method";
-    }
-    
-    @PostMapping("/member")
-    public String postMember(@RequestBody Map<String, String> postData) {
-        List<String> newList =  postData.keySet().stream()
-                .map(key -> key +"=" + postData.get(key))
-                .collect(Collectors.toList());
-        return  String.join(",", newList);
-    }
 
-    @PostMapping("/member/dto")
-    public String postMemberDto(@RequestBody MemberDto dto) {
-        return dto.toString();
-    }
-    
+  @PostMapping("/default")
+  public String postMethod() {
+    return "post method";
+  }
+
+  @PostMapping("/member")
+  public String postMember(@RequestBody Map<String, String> postData) {
+    List<String> newList = postData.keySet().stream()
+        .map(key -> key + "=" + postData.get(key))
+        .collect(Collectors.toList());
+    return String.join(",", newList);
+  }
+
+  @PostMapping("/member/dto")
+  public String postMemberDto(@RequestBody MemberDto dto) {
+    return dto.toString();
+  }
+
 }
 

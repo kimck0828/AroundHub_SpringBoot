@@ -10,21 +10,21 @@ import java.util.Optional;
 
 @Service
 public class ProductDAOImpl implements ProductDAO {
-    
-    ProductRepository productRepository;
-    
-    @Autowired
-    public ProductDAOImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-    
-    @Override
-    public ProductEntity saveProduct(ProductEntity productEntity) {
-        return productRepository.save(productEntity);
-    }
 
-    @Override
-    public ProductEntity getProduct(String productId) {
-        return productRepository.findById(productId).orElse(null);
-    }
+  ProductRepository productRepository;
+
+  @Autowired
+  public ProductDAOImpl(ProductRepository productRepository) {
+    this.productRepository = productRepository;
+  }
+
+  @Override
+  public ProductEntity saveProduct(ProductEntity productEntity) {
+    return productRepository.save(productEntity);
+  }
+
+  @Override
+  public ProductEntity getProduct(String productId) {
+    return productRepository.findById(productId).orElse(null);
+  }
 }

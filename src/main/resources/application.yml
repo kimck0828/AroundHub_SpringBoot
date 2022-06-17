@@ -1,5 +1,5 @@
 spring.datasource:
-  
+
 spring:
   #DB設定
   datasource:
@@ -14,14 +14,14 @@ spring:
       ddl-auto: update
     #SQLを見せる
     show-sql: true
-    
+
     properties:
       hibernate:
         # JPA実行時のSQL表示
         show_sql: true
         # SQLを自動フォーマット
-        format_sql: true 
-      
+        format_sql: true
+
   # DDL自動実行設定
   sql:
     init:

@@ -14,10 +14,26 @@
 
 --  テーブル around-hub.product の構造をダンプしています
 DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `product` (
-  `product_id` varchar(255) NOT NULL,
-  `product_name` varchar(255) DEFAULT NULL,
-  `product_price` int(11) DEFAULT NULL,
-  `product_stock` int(11) DEFAULT NULL,
-  PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE IF NOT EXISTS `product`
+(
+    `product_id` varchar
+(
+    255
+) NOT NULL,
+    `product_name` varchar
+(
+    255
+) DEFAULT NULL,
+    `product_price` int
+(
+    11
+) DEFAULT NULL,
+    `product_stock` int
+(
+    11
+) DEFAULT NULL,
+    PRIMARY KEY
+(
+    `product_id`
+)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;

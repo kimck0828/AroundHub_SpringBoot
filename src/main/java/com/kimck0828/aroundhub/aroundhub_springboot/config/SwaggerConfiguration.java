@@ -13,23 +13,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
-    
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                // スキャンするパッケージ
-                .apis(RequestHandlerSelectors.basePackage("com.kimck0828.aroundhub.aroundhub_springboot"))
-                .paths(PathSelectors.any())
-                .build();
-    }
-    
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Arounf Hub Open API Test with Swagger")
-                .description("説明部分")
-                .version("1.0")
-                .build();
-    }
+
+  @Bean
+  public Docket api() {
+    return new Docket(DocumentationType.SWAGGER_2)
+        .apiInfo(apiInfo())
+        .select()
+        // スキャンするパッケージ
+        .apis(RequestHandlerSelectors.basePackage("com.kimck0828.aroundhub.aroundhub_springboot"))
+        .paths(PathSelectors.any())
+        .build();
+  }
+
+  private ApiInfo apiInfo() {
+    return new ApiInfoBuilder()
+        .title("Arounf Hub Open API Test with Swagger")
+        .description("説明部分")
+        .version("1.0")
+        .build();
+  }
 }

@@ -14,32 +14,34 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
-    
-    ProductService productService;
-    
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
-    
-    @GetMapping("/{productId}")
-    public ProductDto getProduct(@PathVariable String productId) {
-        return productService.getProduct(productId);
-    }
-    @PostMapping("/")
-    public ResponseEntity<ProductDto> saveProduct(@Valid @RequestBody ProductDto productDto) {
-        ProductDto response = productService.saveProduct(
-                productDto.getProductId(),
-                productDto.getProductName(),
-                productDto.getProductPrice(),
-                productDto.getProductStock()
-        );
-        
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
 
-    @GetMapping("/exception")
-    public void exceptionTest() throws AroundHubException {
-        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "わざっとエラー");
-    }
+  ProductService productService;
+
+  @Autowired
+  public ProductController(ProductService productService) {
+    this.productService = productService;
+  }
+
+  @GetMapping("/{productId}")
+  public ProductDto getProduct(@PathVariable String productId) {
+    return productService.getProduct(productId);
+  }
+
+  @PostMapping("/")
+  public ResponseEntity<ProductDto> saveProduct(@Valid @RequestBody ProductDto productDto) {
+    ProductDto response = productService.saveProduct(
+        productDto.getProductId(),
+        productDto.getProductName(),
+        productDto.getProductPrice(),
+        productDto.getProductStock()
+    );
+
+    return ResponseEntity.status(HttpStatus.OK).body(response);
+  }
+
+  @GetMapping("/exception")
+  public void exceptionTest() throws AroundHubException {
+    throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST,
+        "わざっとエラー");
+  }
 }

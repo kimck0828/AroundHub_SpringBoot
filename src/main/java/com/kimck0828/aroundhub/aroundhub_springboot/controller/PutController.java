@@ -15,29 +15,32 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/put")
 public class PutController {
-    @PutMapping("/default")
-    public String putDefault() {
-        return "Put method  - default";
-    }
-    
-    @PutMapping("/member")
-    public String putMember(@RequestBody Map<String, String> putData) {
-        List<String> newList =  putData.keySet().stream()
-                .map(key -> key +"=" + putData.get(key))
-                .collect(Collectors.toList());
-        return  String.join(",", newList);
-    }
-    
-    @PutMapping("/member1")
-    public String putMemberDto1(@RequestBody MemberDto dto) {
-        return dto.toString();
-    }
-    @PutMapping("/member2")
-    public MemberDto putMemberDto2(@RequestBody MemberDto dto) {
-        return dto;
-    }
-    @PutMapping("/member3")
-    public ResponseEntity<MemberDto> putMemberDto3(@RequestBody MemberDto dto) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(dto);
-    }
+
+  @PutMapping("/default")
+  public String putDefault() {
+    return "Put method  - default";
+  }
+
+  @PutMapping("/member")
+  public String putMember(@RequestBody Map<String, String> putData) {
+    List<String> newList = putData.keySet().stream()
+        .map(key -> key + "=" + putData.get(key))
+        .collect(Collectors.toList());
+    return String.join(",", newList);
+  }
+
+  @PutMapping("/member1")
+  public String putMemberDto1(@RequestBody MemberDto dto) {
+    return dto.toString();
+  }
+
+  @PutMapping("/member2")
+  public MemberDto putMemberDto2(@RequestBody MemberDto dto) {
+    return dto;
+  }
+
+  @PutMapping("/member3")
+  public ResponseEntity<MemberDto> putMemberDto3(@RequestBody MemberDto dto) {
+    return ResponseEntity.status(HttpStatus.ACCEPTED).body(dto);
+  }
 }

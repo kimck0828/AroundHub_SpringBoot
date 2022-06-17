@@ -14,12 +14,13 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="product")
+@Table(name = "product")
 public class ProductEntity {
-    @Id
-    String productId;
-    String productName;
-    Integer productPrice;
-    Integer productStock;
+
+  @Id
+  String productId;
+  String productName;
+  Integer productPrice;
+  Integer productStock;
 
 }

@@ -20,61 +20,62 @@ import static org.mockito.Mockito.verify;
 // テストを行う時に必要なクラス（テストクラス、そのクラスでAutowiredされるメソッドの中でMOCKになる変数）
 @Import({ProductServiceImpl.class, ProductDAO.class})
 public class PriductServiceImplTest {
-    
-    @MockBean
-    ProductDAO productDAO;
-    
-    @Autowired
-    ProductServiceImpl productService;
-    
-    @Test
-    @DisplayName("getProduct(String productId)メソッド")
-    public void getProductTest() {
 
-        final ProductEntity ENTITY = ProductEntity.builder()
-                .productId("12345")
-                .productName("prdName")
-                .productPrice(10000)
-                .productStock(12)
-                .build();
-        given(productDAO.getProduct(ENTITY.getProductId()))
-                .willReturn(ENTITY);
+  @MockBean
+  ProductDAO productDAO;
 
-        // 実行
-        ProductDto rtnProductDto = productService.getProduct(ENTITY.getProductId());
-        
-        // 確認
-        assertEquals(ENTITY.getProductId(), rtnProductDto.getProductId());
-        assertEquals(ENTITY.getProductName(), rtnProductDto.getProductName());
-        assertEquals(ENTITY.getProductPrice(), rtnProductDto.getProductPrice());
-        assertEquals(ENTITY.getProductStock(), rtnProductDto.getProductStock());
-        
-        verify(productDAO, times(1)).getProduct(ENTITY.getProductId());
-        
-    }
+  @Autowired
+  ProductServiceImpl productService;
 
-    @Test
-    @DisplayName("saveProduct(String productId, String productName, int productPrice, int productStock) テスト")
-    public void saveProduct() {
-        final ProductEntity ENTITY = ProductEntity.builder()
-                .productId("12345")
-                .productName("prdName")
-                .productPrice(10000)
-                .productStock(12)
-                .build();
-        given(productDAO.saveProduct(ENTITY))
-                .willReturn(ENTITY);
+  @Test
+  @DisplayName("getProduct(String productId)メソッド")
+  public void getProductTest() {
 
-        // 実行
-        ProductDto rtnProductDto = 
-                productService.saveProduct(ENTITY.getProductId(), ENTITY.getProductName(), ENTITY.getProductPrice(), ENTITY.getProductStock());
+    final ProductEntity ENTITY = ProductEntity.builder()
+        .productId("12345")
+        .productName("prdName")
+        .productPrice(10000)
+        .productStock(12)
+        .build();
+    given(productDAO.getProduct(ENTITY.getProductId()))
+        .willReturn(ENTITY);
 
-        // 確認
-        assertEquals(ENTITY.getProductId(), rtnProductDto.getProductId());
-        assertEquals(ENTITY.getProductName(), rtnProductDto.getProductName());
-        assertEquals(ENTITY.getProductPrice(), rtnProductDto.getProductPrice());
-        assertEquals(ENTITY.getProductStock(), rtnProductDto.getProductStock());
+    // 実行
+    ProductDto rtnProductDto = productService.getProduct(ENTITY.getProductId());
 
-        verify(productDAO, times(1)).saveProduct(ENTITY);
-    }
+    // 確認
+    assertEquals(ENTITY.getProductId(), rtnProductDto.getProductId());
+    assertEquals(ENTITY.getProductName(), rtnProductDto.getProductName());
+    assertEquals(ENTITY.getProductPrice(), rtnProductDto.getProductPrice());
+    assertEquals(ENTITY.getProductStock(), rtnProductDto.getProductStock());
+
+    verify(productDAO, times(1)).getProduct(ENTITY.getProductId());
+
+  }
+
+  @Test
+  @DisplayName("saveProduct(String productId, String productName, int productPrice, int productStock) テスト")
+  public void saveProduct() {
+    final ProductEntity ENTITY = ProductEntity.builder()
+        .productId("12345")
+        .productName("prdName")
+        .productPrice(10000)
+        .productStock(12)
+        .build();
+    given(productDAO.saveProduct(ENTITY))
+        .willReturn(ENTITY);
+
+    // 実行
+    ProductDto rtnProductDto =
+        productService.saveProduct(ENTITY.getProductId(), ENTITY.getProductName(),
+            ENTITY.getProductPrice(), ENTITY.getProductStock());
+
+    // 確認
+    assertEquals(ENTITY.getProductId(), rtnProductDto.getProductId());
+    assertEquals(ENTITY.getProductName(), rtnProductDto.getProductName());
+    assertEquals(ENTITY.getProductPrice(), rtnProductDto.getProductPrice());
+    assertEquals(ENTITY.getProductStock(), rtnProductDto.getProductStock());
+
+    verify(productDAO, times(1)).saveProduct(ENTITY);
+  }
 }
