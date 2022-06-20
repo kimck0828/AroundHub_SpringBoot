@@ -1,13 +1,12 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.service.impl;
 
-import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
+import com.kimck0828.aroundhub.aroundhub_springboot.data.dto.MemberDto;
 import com.kimck0828.aroundhub.aroundhub_springboot.service.RestTempleteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;

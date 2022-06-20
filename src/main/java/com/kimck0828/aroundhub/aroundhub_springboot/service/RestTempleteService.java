@@ -1,6 +1,6 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.service;
 
-import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
+import com.kimck0828.aroundhub.aroundhub_springboot.data.dto.MemberDto;
 import org.springframework.http.ResponseEntity;
 
 public interface RestTempleteService {

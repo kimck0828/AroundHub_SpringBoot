@@ -1,5 +1,3 @@
-spring.datasource:
-
 spring:
   #DB設定
   datasource:
@@ -23,16 +21,20 @@ spring:
         format_sql: true
 
   # DDL自動実行設定
-  sql:
-    init:
-      mode: always #always: 起動時は必ず実行
-      schema-locations: classpath:schema.sql #実行するスキマーファイル
-      data-locations: classpath:data.sql #実行するSQLファイル
+  sql.init:
+    mode: always #always: 起動時は必ず実行
+    schema-locations: classpath:schema.sql #実行するスキマーファイル
+    data-locations: classpath:data.sql #実行するSQLファイル
 
 # Logging
-logging:
-  level:
+logging.level:
     # JPAログレベル
     org.hibernate.type.descriptor.sql.BasicBinder: trace
     org.hibernate.type.EnumType: trace
-   
+
+short.url.x.rapidapi:
+  access:
+    point: https://url-shortener-service.p.rapidapi.com
+    path: shorten
+  key: 164f928ba5mshf23a1495c0c62a1p106b49jsnb6ada11dd2ca
+  host: url-shortener-service.p.rapidapi.com

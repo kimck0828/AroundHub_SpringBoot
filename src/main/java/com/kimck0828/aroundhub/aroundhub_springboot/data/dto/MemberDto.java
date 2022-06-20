@@ -1,4 +1,4 @@
-package com.kimck0828.aroundhub.aroundhub_springboot.dto;
+package com.kimck0828.aroundhub.aroundhub_springboot.data.dto;
 
 import lombok.*;
 

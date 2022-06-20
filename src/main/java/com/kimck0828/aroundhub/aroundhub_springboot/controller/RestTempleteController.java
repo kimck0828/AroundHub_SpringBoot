@@ -1,30 +1,32 @@
 package com.kimck0828.aroundhub.aroundhub_springboot.controller;
 
-import com.google.gson.Gson;
-import com.kimck0828.aroundhub.aroundhub_springboot.dto.MemberDto;
+import com.kimck0828.aroundhub.aroundhub_springboot.data.dto.MemberDto;
 import com.kimck0828.aroundhub.aroundhub_springboot.service.RestTempleteService;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("api/rest-templete")
+@RequiredArgsConstructor
 public class RestTempleteController {
-
-  @Autowired
-  private RestTempleteService service;
+  /** サービス*/
+  final private RestTempleteService service;
 
   @GetMapping("/around-hub")
   public String getArounfHub() {
@@ -75,7 +77,7 @@ public class RestTempleteController {
 
     ResponseEntity<Map> responseEntity = restTemplate.exchange(requestEntity,
         Map.class);
-    return (String) responseEntity.getBody().get("result_url");
+    return (String) Objects.requireNonNull(responseEntity.getBody()).get("result_url");
   }
   
   @Data
